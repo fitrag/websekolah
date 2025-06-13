@@ -71,6 +71,11 @@
           <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch" data-aos="fade-right">
             <a href="https://www.youtube.com/watch?v=P19bjxy-PDk" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
             <!-- <img src="https://img.youtube.com/vi/tgxj_yL3OSM/maxresdefault.jpg"  style="height:300px; object-fit: cover; object-position: center;"> -->
+          
+            <img src="https://img.youtube.com/vi/P19bjxy-PDk/maxresdefault.jpg" 
+              class="img-fluid" 
+              alt="Video thumbnail"
+              style="width: 100%; height: auto; object-fit: cover; border-radius: 10px;">
           </div>
 
           <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">

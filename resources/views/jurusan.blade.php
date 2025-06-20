@@ -1,5 +1,5 @@
 @extends('components.layouts.app')
-@section('title', 'Detail Berita')
+@section('title', 'Jurusan '.$jurusan->name)
 @section('content')
 
     <section id="deatilberita" class="contact">

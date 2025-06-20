@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('kis', function (Blueprint $table) {
             $table->id();
-            $able->id();
             $table->string('tp',10);
             $table->date('tgl_pelaksanaan');
             $table->text('deskripsi');

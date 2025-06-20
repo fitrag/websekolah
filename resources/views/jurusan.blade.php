@@ -15,13 +15,10 @@
                         Jurusan
                     </a>
                     <span class="mx-2">/</span>
-                    {{ $jurusan->title }}
+                    {{ $jurusan->name }}
             </nav>
-            <div class="section-title">
 
-            </div>
-
-            <div class="row justify-content">
+            <div class="row justify-content mt-5">
 
                 <div class="col-xl-8 col-lg-4" data-aos="fade-up">
                     <div class="info-box">

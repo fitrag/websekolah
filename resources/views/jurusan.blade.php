@@ -1,5 +1,5 @@
 @extends('components.layouts.app')
-@section('title', 'Jurusan '.$jurusan->name)
+@section('title', 'Jurusan ' . $jurusan->name)
 @section('content')
 
     <section id="deatilberita" class="contact">
@@ -39,8 +39,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
         </div>

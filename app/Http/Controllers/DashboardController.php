@@ -55,6 +55,8 @@ class DashboardController extends Controller
     {
         $coursel = Carousel::orderby('id','ASC')->paginate(5);
         $no = 0;
-        return view('jurusan', compact('no', 'coursel', 'jurusan'));
+        $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
+        
+        return view('jurusan', compact('no', 'coursel', 'jurusan', 'events'));
     }
 }

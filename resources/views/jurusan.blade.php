@@ -39,6 +39,48 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xl-4 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-box">
+                        <i class="bx bx-link"></i>
+                        <h3>Berita Terkait</h3>
+                        <p><strong>Tentang : </strong></p>
+
+                        <br>
+                        <div class="media my-3">
+                            <img class="rounded mr-3" src=""
+                                style="height:60px; width:60px; object-fit: cover; object-position: center;" alt="">
+                            <div class="media-body">
+                                <div>
+                                    <a href="">ABC></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="font-weight-bold mb-3">Events Sekolah</h3>
+                        @foreach($events as $event)
+                            <div class="event-card">
+                                <div class="d-flex align-items-center">
+                                    <div class="event-date">
+                                        <div class="event-day">{{ \Carbon\Carbon::parse($event->tgl)->format('d') }}</div>
+                                        <div class="event-month">{{ \Carbon\Carbon::parse($event->tgl)->format('M') }}</div>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="event-title">{{ $event->judul }}</div>
+                                        <div class="event-details">📅
+                                            {{ \Carbon\Carbon::parse($event->tgl)->format('d M Y H:i:s') }}
+                                        </div>
+                                        <div class="event-details">📍 {{ $event->lokasi }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <a href="" class="btn btn-orange w-100 font-weight-bold">Lihat Semua Event</a>
+                    </div>
+                </div>
             </div>
 
         </div>

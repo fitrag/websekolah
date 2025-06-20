@@ -64,7 +64,7 @@
                 @php
                     $ber = App\Models\Berita::select('id','title','body','thumbnail','foto1','edit_at')
                         ->where([
-                                ['categorie_id','=',$berita->categorie_id],
+                                ['category_id','=',$berita->category_id],
                                 ['status', '=', 'publish'],
                             ])
                         ->orderby('id','DESC')

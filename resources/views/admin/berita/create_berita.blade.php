@@ -105,7 +105,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="title">Kategori</label>
-                                    <select class="form-control" name="categorie_id" required="">
+                                    <select class="form-control" name="category_id" required="">
                                         <option value="">(Pilih Kategori)</option>
                                         @foreach($categori as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>

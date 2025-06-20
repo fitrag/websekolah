@@ -64,7 +64,7 @@
 <body>
 
     <x-navigation/>
-    <x-carousel/>
+    <x-slider-carousel/>
     
     
     @yield('content')

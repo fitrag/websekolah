@@ -31,8 +31,8 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'categorie_id' => 'required',
+        $request->validate([
+            'category_id' => 'required',
             'title'        => 'required',
             'body'        => 'required',
             
@@ -86,7 +86,7 @@ class BeritaController extends Controller
         $t =$thumbnail.','.$foto1.','.$foto2.','.$foto3;
         // $thumbnail = implode(",",Input::get(array('t')));
         Berita::create([
-            'categorie_id'    => $request->categorie_id,
+            'category_id'    => $request->category_id,
             'title'           => $request->title,
             'slug'            => Str::slug($request->title),
             'body'            => $request->body,

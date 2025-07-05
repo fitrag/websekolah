@@ -10,7 +10,7 @@ class Berita extends Model
 
     public function categori()
     {
-        return $this->belongsTo('App\Models\Category','categorie_id','id');
+        return $this->belongsTo('App\Models\Category','category_id','id');
     }
     public function user()
     {

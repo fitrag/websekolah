@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Coursel,Category};
+use App\Models\{Carousel,Category};
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -17,7 +17,7 @@ class CourselController extends Controller
      */
     public function index()
     {
-        $coursels= Coursel::all();
+        $coursels= Carousel::all();
         return view('admin.coursel.coursel', compact('coursels'));
     }
 
@@ -27,7 +27,7 @@ class CourselController extends Controller
     public function create()
     {
         return view('admin.coursel.tambah', [
-            'coursel' => New Coursel(),
+            'coursel' => New Carousel(),
             'categories' => Category::get(),
         ]);
     }
@@ -70,7 +70,7 @@ class CourselController extends Controller
         $attr['user_id'] = auth()->id();
         
         //create new post
-        $coursel = Coursel::create($attr);
+        $coursel = Carousel::create($attr);
 
         
         // session()->flash('success', 'berhasil di simpan');
@@ -92,7 +92,7 @@ class CourselController extends Controller
     public function edit($id)
     {
         $categories = Category::all();
-        $coursel = Coursel::findOrFail($id);
+        $coursel = Carousel::findOrFail($id);
         return view('admin.coursel.edit_coursel',compact('coursel','categories'));
     }
 
@@ -101,7 +101,7 @@ class CourselController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categories = Coursel::find($id);
+        $categories = Carousel::find($id);
 
         // $request->validate([
         //     'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
@@ -121,7 +121,7 @@ class CourselController extends Controller
             $request->file('thumbnail')->move("images/slider", $filename);
             $thumbnail = $filename;
 
-           Coursel::find($id)->update([
+           Carousel::find($id)->update([
                 'categorie_id'  => $request->get('categorie_id'),
                 'title'         => $request->get('title'),
                 'body'          => $request->get('body'),
@@ -136,7 +136,7 @@ class CourselController extends Controller
 
             else
             {
-                Coursel::find($id)->update([
+                Carousel::find($id)->update([
                 'categorie_id'   => $request->get('categorie_id'),
                 'title'          => $request->get('title'),
                 'body'           => $request->get('body'),
@@ -166,7 +166,7 @@ class CourselController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Coursel $coursel)
+    public function destroy(Carousel $coursel)
     {
         $imagePath = public_path('images/slider/' . $coursel->thumbnail);
         if (file_exists($imagePath)) {

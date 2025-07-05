@@ -2,12 +2,12 @@
 
 namespace App\View\Components;
 
-use App\Models\Coursel;
+use App\Models\Carousel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class carousel extends Component
+class SliderCarousel extends Component
 {
     /**
      * Create a new component instance.
@@ -22,9 +22,9 @@ class carousel extends Component
      */
     public function render(): View|Closure|string
     {
-        $coursel = Coursel::orderby('id','ASC')
+        $coursel = Carousel::orderby('id','ASC')
                 ->where('status','publish')
                 ->paginate(5);
-        return view('components.carousel', compact('coursel'));
+        return view('components.slider-carousel', compact('coursel'));
     }
 }

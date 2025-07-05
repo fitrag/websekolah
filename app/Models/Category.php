@@ -9,6 +9,6 @@ class Category extends Model
     protected $guarded = [''];
     public function coursels()
     {
-        return $this->hasMany(Coursel::class);
+        return $this->hasMany(Carousel::class);
     }
 }

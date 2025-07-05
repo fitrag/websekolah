@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Coursel extends Model
+class Carousel extends Model
 {
     protected $guarded =[''];
     public function author()
@@ -14,6 +14,6 @@ class Coursel extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class,'categorie_id');
+        return $this->belongsTo(Category::class,'category_id');
     }
 }

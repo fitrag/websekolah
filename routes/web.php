@@ -13,21 +13,24 @@ Route::get('galeri_foto', [DashboardController::class,'galeri_foto']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-Route::group(['prefix' => 'admin','midleware' => ['auth'], 'as' => 'admin.'], function(){
-Route::get('home', [AdminController::class, 'index'])->name('home');
 
-  // slider
-  Route::get('coursels', [CourselController::class, 'index'])->name('coursels');
-  Route::get('admin/coursel/{id}/edit',[CourselController::class, 'edit']);
-  Route::get('admin/coursels/tambah',[CourselController::class, 'create'])->name('coursels.tambah');
-  Route::post('admin/coursels/store', [CourselController::class, 'store']);
-  Route::put('admin/coursel/{id}/edit', [CourselController::class, 'update'])->name('admin.coursel.update');
-  Route::delete('admin/coursel/{coursel:slug}', [CourselController::class, 'destroy']);
-
-  // berita
-  Route::resource('berita', BeritaController::class);
-  Route::get('publish/{id}', [BeritaController::class, 'update_publish']);
-
-  // kategori
-  Route::resource('kategori', CategoryController::class);
+Route::middleware('auth')->group(function(){
+  Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
+    Route::get('home', [AdminController::class, 'index'])->name('home');
+    
+    // slider
+    Route::get('coursels', [CourselController::class, 'index'])->name('coursels');
+    Route::get('coursel/{id}/edit',[CourselController::class, 'edit']);
+    Route::get('admin/coursels/tambah',[CourselController::class, 'create'])->name('coursels.tambah');
+    Route::post('admin/coursels/store', [CourselController::class, 'store']);
+    Route::put('admin/coursel/{id}/edit', [CourselController::class, 'update'])->name('admin.coursel.update');
+    Route::delete('admin/coursel/{coursel:slug}', [CourselController::class, 'destroy']);
+  
+    // berita
+    Route::resource('berita', BeritaController::class);
+    Route::get('publish/{id}', [BeritaController::class, 'update_publish']);
+  
+    // kategori
+    Route::resource('kategori', CategoryController::class);
+  });
 });

@@ -189,7 +189,7 @@ class BeritaController extends Controller
             $berita->body = $request->body;
             $berita->embeded = $request->embeded;
             $berita->foto1 = $foto1;
-               
+            
         }
         else 
         {

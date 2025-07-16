@@ -140,7 +140,8 @@
 
     <!-- Jurusan dan Event Sekolah -->
 
-    <div class="jurusaneventcontainer py-5">
+    <div class="jurusaneventcontainer py-5" style="background:url('{{ asset('assets/img/bg_testimoni.jpg') }}') no-repeat center center; background-size: cover;background-attachment: fixed;">
+      <div class="layerblack"></div>
     <div class="container">
       <div class="row main-container">
       <!-- Jurusan SMK Section -->
@@ -167,19 +168,21 @@
       <h2 class="section-title">Event Sekolah</h2>
 
       @foreach($events as $event)
-      <div class="event-card">
-      <div class="d-flex align-items-center">
-      <div class="event-date">
-        <div class="event-day">{{ \Carbon\Carbon::parse($event->tgl)->format('d') }}</div>
-        <div class="event-month">{{ \Carbon\Carbon::parse($event->tgl)->format('M') }}</div>
-      </div>
-      <div class="flex-grow-1">
-        <div class="event-title">{{ $event->judul }}</div>
-        <div class="event-details">📅 {{ \Carbon\Carbon::parse($event->tgl)->format('d M Y H:i:s') }}</div>
-        <div class="event-details">📍 {{ $event->lokasi }}</div>
-      </div>
-      </div>
-      </div>
+      <a href="{{ route('event.show', $event->slug) }}">
+        <div class="event-card">
+          <div class="d-flex align-items-center">
+            <div class="event-date">
+              <div class="event-day">{{ \Carbon\Carbon::parse($event->tgl)->format('d') }}</div>
+              <div class="event-month">{{ \Carbon\Carbon::parse($event->tgl)->format('M') }}</div>
+            </div>
+            <div class="flex-grow-1">
+              <div class="event-title">{{ $event->judul }}</div>
+              <div class="event-details">📅 {{ \Carbon\Carbon::parse($event->tgl)->format('d M Y H:i:s') }}</div>
+              <div class="event-details">📍 {{ $event->lokasi }}</div>
+            </div>
+          </div>
+        </div>
+      </a>
     @endforeach
 
       </div>

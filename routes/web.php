@@ -10,6 +10,8 @@ Route::get('cari_berita',[DashboardController::class,'cari_berita']);
 Route::get('show/{id}', [DashboardController::class,'show']);
 Route::get('galeri_foto', [DashboardController::class,'galeri_foto']);
 Route::get('jurusan/{jurusan:slug}', [DashboardController::class,'jurusan'])->name('jurusan');
+Route::get('event', [DashboardController::class,'event'])->name('event.index');
+Route::get('event/{event:slug}', [DashboardController::class,'show_event'])->name('event.show');
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');

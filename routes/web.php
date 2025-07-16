@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{DashboardController,AuthController,AdminController,CourselController,BeritaController, CategoryController, JurusanController, EventController};
+use App\Http\Controllers\{DashboardController,AuthController,AdminController,CourselController,BeritaController, CategoryController, JurusanController, EventController, PengaturanController};
 
 //front
 Route::get('/', [DashboardController::class,'index']);
@@ -42,6 +42,10 @@ Route::middleware('auth')->group(function(){
     Route::post('event/store', [EventController::class, 'store'])->name('event.store');
     Route::put('event/{id}/edit', [EventController::class, 'update'])->name('event.update');
     Route::delete('event/{event:slug}', [EventController::class, 'destroy'])->name('event.destroy');
+
+    // pengaturan
+    Route::get('pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
+    Route::put('pengaturan/update', [PengaturanController::class, 'update'])->name('pengaturan.update');
   
     // berita
     Route::resource('berita', BeritaController::class);

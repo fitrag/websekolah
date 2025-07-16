@@ -372,6 +372,17 @@
                             </li>
       
                         </ul>
+                        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Pengaturan</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li>
+                                <a href="{{ route('admin.pengaturan.index') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-settings"></i><b>FC</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pengaturan Website</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+      
+                        </ul>
       
                         
                     </div>

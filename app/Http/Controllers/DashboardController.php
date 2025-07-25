@@ -59,4 +59,20 @@ class DashboardController extends Controller
         
         return view('jurusan', compact('no', 'coursel', 'jurusan', 'events'));
     }
+
+    //event
+    public function event()
+    {
+        $coursel = Carousel::orderby('id','ASC')->paginate(5);
+        $no = 0;
+        $events = Ivent::where('status','publish')->orderby('id','DESC')->paginate(6);
+        return view('event', compact('no', 'coursel', 'events'));
+    }
+    public function show_event(Ivent $event)
+    {
+        $coursel = Carousel::orderby('id','ASC')->paginate(5);
+        //events all but no same with in view
+        $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
+        return view('event.show_event', compact('event', 'coursel', 'events'));
+    }
 }

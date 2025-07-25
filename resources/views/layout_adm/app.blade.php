@@ -277,6 +277,13 @@
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
+                                    <li class="{{ Request::is('admin/jurusan') ? 'active' : '' }}">
+                                        <a href="{{ url('admin/jurusan') }}" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jurusan</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
                                    
                                     <li class="{{ Request::is('guruajars') ? 'active' : '' }}">
                                         <a href="notification.html" class="waves-effect waves-dark">
@@ -297,6 +304,13 @@
                                 <a href="{{ url('admin/berita') }}" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                     <span class="pcoded-mtext" data-i18n="nav.form-components.main">Berita</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('admin/event') ? 'active' : '' }}">
+                                <a href="{{ url('admin/event') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Event Sekolah</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
@@ -355,6 +369,17 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+      
+                        </ul>
+                        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Pengaturan</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li>
+                                <a href="{{ route('admin.pengaturan.index') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-settings"></i><b>FC</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Pengaturan Website</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
                             </li>
       
                         </ul>

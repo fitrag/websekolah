@@ -1,5 +1,5 @@
 @extends('components.layouts.app')
-@section('title', 'Jurusan ' . $jurusan->name)
+@section('title', 'event ' . $event->name)
 @section('content')
 
     <section id="deatilberita" class="contact">
@@ -12,10 +12,10 @@
                     </a>
                     <span class="mx-2">/</span>
                     <a href="#" class="hover:text-orange-600 transition duration-300">
-                        Jurusan
+                        Event
                     </a>
                     <span class="mx-2">/</span>
-                    {{ $jurusan->name }}
+                    {{ $event->name }}
             </nav>
 
             <div class="row justify-content mt-5">
@@ -23,40 +23,23 @@
                 <div class="col-xl-8 col-lg-4" data-aos="fade-up">
                     <div class="info-box">
                         <i class="bx bx-book"></i>
-                        <h3> {{ $jurusan->name }} </h3>
+                        <h3> {{ $event->judul }} </h3>
 
                         <div class="container text-justify mt-3">
-                            {!! $jurusan->description !!}
+                            {!! $event->isi !!}
                         </div>
 
 
                         <div class="text-secondary py-2 ">
-                            &middot; {{ $jurusan->created_at->diffForHumans() }}
+                            &middot; {{ $event->created_at->diffForHumans() }}
                             &middot;
                         </div>
                     </div>
                 </div>
 
                 <div class="col-xl-4 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-box">
-                        <i class="bx bx-link"></i>
-                        <h3>Berita Terkait</h3>
-                        <p><strong>Tentang : </strong></p>
 
-                        <br>
-                        <div class="media my-3">
-                            <img class="rounded mr-3" src=""
-                                style="height:60px; width:60px; object-fit: cover; object-position: center;" alt="">
-                            <div class="media-body">
-                                <div>
-                                    <a href="">ABC></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-4">
+                    <div class="">
                         <h3 class="font-weight-bold mb-3">Events Sekolah</h3>
                         @foreach($events as $event)
                         <a href="{{ route('event.show', $event->slug) }}">

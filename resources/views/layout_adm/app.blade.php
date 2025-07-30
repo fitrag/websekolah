@@ -256,28 +256,28 @@
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>
-                            <li class="pcoded-hasmenu {{ Request::is('admin/coursels') || Request::is('gurs') || Request::is('guruajars') || Request::is('admin/kategori') || Request::is('kelas') || Request::is('tps') ? 'active pcoded-trigger' : '' }}">
+                            <li class="pcoded-hasmenu {{  Request::is('admin/coursels*') || Request::is('guruajars*') ||  Request::is('admin/kategori*') || Request::is('admin/jurusan*') ||  Request::is('kelas*') || Request::is('tps*') ? 'active pcoded-trigger' : '' }}">
                                 <a href="javascript:void(0)" class="waves-effect waves-dark">
                                     <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                     <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Master</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                                 <ul class="pcoded-submenu">
-                                    <li class="{{ Request::is('admin/kategori') ? 'active' : '' }}">
+                                    <li class="{{ Request::is('admin/kategori*') ? 'active' : '' }}">
                                         <a href="{{ url('admin/kategori') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Kategori</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
-                                    <li class="{{ Request::is('admin/coursels') ? 'active' : '' }}">
+                                    <li class="{{ Request::is('admin/coursels*') ? 'active' : '' }}">
                                         <a href="{{ url('admin/coursels') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Slider</span>
                                             <span class="pcoded-mcaret"></span>
                                         </a>
                                     </li>
-                                    <li class="{{ Request::is('admin/jurusan') ? 'active' : '' }}">
+                                    <li class="{{ Request::is('admin/jurusan*') ? 'active' : '' }}">
                                         <a href="{{ url('admin/jurusan') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jurusan</span>
@@ -285,13 +285,7 @@
                                         </a>
                                     </li>
                                    
-                                    <li class="{{ Request::is('guruajars') ? 'active' : '' }}">
-                                        <a href="notification.html" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">User</span>
-                                            <span class="pcoded-mcaret"></span>
-                                        </a>
-                                    </li>
+                                    
                                     
                                 </ul>
                             </li>

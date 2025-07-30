@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ivent as Event; // Assuming you have an Event model
+use App\Models\Pengaturan;
 
 class EventController extends Controller
 {
     public function index()
     {
         // Tampilkan daftar event
+        $pengaturan = Pengaturan::first();
         $events = Event::all();
-        return view('admin.event.index', compact('events'));
+        return view('admin.event.index', compact('events','pengaturan'));
     }
 
     public function create()

@@ -1,0 +1,31 @@
+.hero-berita {
+    background-image: url('img/osis.png'); /* Ganti dengan nama file gambar Anda */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 200px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.overlay-berita {
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay gelap */
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.hero-berita h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #ddd;
+}

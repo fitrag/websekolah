@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carousel extends Model
 {
+    // protected $table ='coursels';
     protected $guarded =[''];
     
     public function author()

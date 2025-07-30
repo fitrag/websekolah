@@ -1,45 +1,36 @@
 @extends('components.layouts.app')
-@section('title', 'event ' . $event->name)
+@section('title', 'Sejarah ')
 @section('content')
 
     <section id="deatilberita" class="contact">
-        <div class="hero-berita" style="background-image: url('{{ asset('img/' . $pengaturan->tumbnail) }}'); height: 200px;"> 
-            <div class="overlay-berita">
-                <div class="container">
-                    <br>
-                        <h1>{{ $event->judul }}</h1> 
-                        <br>
-                        <nav class="mb-6 mt-4" aria-label="Breadcrumb">
-                                <a href="#" class="hover:text-white-600 transition duration-300">
-                                    Beranda
-                                </a>
-                                <span class="mx-2">/</span>
-                                <a href="#" class="hover:text-white-600 transition duration-300">
-                                    Event
-                                </a>
-                            
-                                
-                        </nav>  
-                </div>
-            </div>
-        </div>
         <div class="container">
-            
+            <nav class="mt-4" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-2 text-sm text-gray-500">
 
-            <div class="row justify-content mt-4">
+                    <a href="#" class="hover:text-orange-600 transition duration-300">
+                        Beranda
+                    </a>
+                    <span class="mx-2">/</span>
+                    <a href="{{ url('beranda')}}#sejarah" class="hover:text-orange-600 transition duration-300">
+                        Sejarah
+                    </a>
+                    
+            </nav>
+
+            <div class="row justify-content mt-5">
 
                 <div class="col-xl-8 col-lg-4" data-aos="fade-up">
                     <div class="info-box">
                         <i class="bx bx-book"></i>
-                        <h3> {{ $event->judul }} </h3>
-
+                        <h3>Sejarah</h3>
+                        <br>
                         <div class="container text-justify mt-3">
-                            {!! $event->isi !!}
+                            {{ $pengaturan->sejarah}}
                         </div>
 
 
                         <div class="text-secondary py-2 ">
-                            &middot; {{ $event->created_at->diffForHumans() }}
+                            &middot; 
                             &middot;
                         </div>
                     </div>

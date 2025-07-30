@@ -6,8 +6,10 @@ use App\Http\Controllers\{DashboardController,AuthController,AdminController,Cou
 //front
 Route::get('/', [DashboardController::class,'index']);
 Route::get('beranda', [DashboardController::class,'index']);
+Route::get('sejarah', [DashboardController::class,'index']);
 Route::get('cari_berita',[DashboardController::class,'cari_berita']);
 Route::get('show/{id}', [DashboardController::class,'show']);
+Route::get('showsejarah/{id}', [DashboardController::class,'showsejarah']);
 Route::get('galeri_foto', [DashboardController::class,'galeri_foto']);
 Route::get('jurusan/{jurusan:slug}', [DashboardController::class,'jurusan'])->name('jurusan');
 Route::get('event', [DashboardController::class,'event'])->name('event.index');

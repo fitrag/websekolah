@@ -42,25 +42,35 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="{{ url('beranda')}}">Beranda</a></li>
-          <li class="drop-down"><a href="">Profil</a>
-            <ul>
-                <li><a href="#sejarah">Sejarah</a>
-                <li><a href="#sejarah">Visi dan Misi</a></li>
-                <li><a href="#portfolio">Portofolio</a></li>
-                <li><a href="#">Struktur Organisasi</a></li>
-                <li><a href="#">Denah Sekolah</a></li>
-                <li><a href="#">Logo</a></li>
-                <li><a href="#">Akreditasi dan Penghargaan</a></li>
-            </ul>
+          <li class="{{ Request::is('beranda') ? 'active' : '' }}">
+              <a href="{{ url('beranda') }}">Beranda</a>
           </li>
-          <li class="drop-down"><a href="">Sarpras</a>
-            <ul>
-              <li><a href="#">Fasilitas Sekolah</a></li>
-              <li><a href="#">Denah Ruang</a></li>
-              <li><a href="#">Denah Lokasi</a></li>
-              <li><a href="#">Daftar Inventaris Ruang dan Barang</a></li>
-            </ul>
+
+          <li class="drop-down {{ Request::is('sejarah*') || Request::is('visi-misi*') || Request::is('portofolio*') || Request::is('struktur-organisasi*') || Request::is('denah*') || Request::is('logo*') || Request::is('akreditasi*') ? 'active' : '' }}">
+              <a href="#">Profil</a>
+              <ul>
+                  <li class="{{ Request::is('sejarah*') ? 'active' : '' }}">
+                      <a href="{{ url('sejarah') }}#sejarah">Sejarah</a>
+                  </li>
+                  <li class="{{ Request::is('visi-misi*') ? 'active' : '' }}">
+                      <a href="{{ url('visi-misi') }}">Visi dan Misi</a>
+                  </li>
+                  <li class="{{ Request::is('portofolio*') ? 'active' : '' }}">
+                      <a href="{{ url('portofolio') }}">Portofolio</a>
+                  </li>
+                  <li class="{{ Request::is('struktur-organisasi*') ? 'active' : '' }}">
+                      <a href="{{ url('struktur-organisasi') }}">Struktur Organisasi</a>
+                  </li>
+                  <li class="{{ Request::is('denah*') ? 'active' : '' }}">
+                      <a href="{{ url('denah') }}">Denah Sekolah</a>
+                  </li>
+                  <li class="{{ Request::is('logo*') ? 'active' : '' }}">
+                      <a href="{{ url('logo') }}">Logo</a>
+                  </li>
+                  <li class="{{ Request::is('akreditasi*') ? 'active' : '' }}">
+                      <a href="{{ url('akreditasi') }}">Akreditasi dan Penghargaan</a>
+                  </li>
+              </ul>
           </li>
           <li class="drop-down"><a href="">Kurikulum</a>
             <ul>

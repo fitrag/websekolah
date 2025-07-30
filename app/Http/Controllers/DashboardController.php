@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Berita,Carousel, Ivent, Jurusan};
+use App\Models\{Alumni, Berita,Carousel, Ivent, Jurusan, Mou, Pengaturan};
+use Illuminate\Support\Str;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        $headline = Berita::latest()->first(); // ambil 1 berita utama
+        $berita = Berita::where('id', '!=', $headline->id)->latest()->take(6)->get(); // berita lainnya
+
         $coursel = Carousel::orderby('id','ASC')
                 ->where('status','publish')
                 ->paginate(5);
@@ -19,13 +23,21 @@ class DashboardController extends Controller
         $no = 0; 
         $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
         $jurusans = Jurusan::orderby('id','ASC')->get();
+        $pengaturan = Pengaturan::first();
+        $mou = Mou::all();
+        $alumni = Alumni::orderBy('nama')->limit(10)->get();
         return view('index',compact(
             'no', 
             'data_berita', 
             'jml_berita',
             'coursel',
             'events',
-            'jurusans'
+            'jurusans',
+            'pengaturan',
+            'headline', 
+            'berita',
+            'mou',
+            'alumni'
         ));
     }
 
@@ -46,9 +58,17 @@ class DashboardController extends Controller
     
     public function show($id)
     {
+        $pengaturan = Pengaturan::first();
         $coursel = Carousel::orderby('id','ASC')->paginate(5);
         $berita = Berita::find($id);
-        return view('berita.show_berita', compact('berita','coursel'));
+        $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
+        return view('berita.show_berita', compact('berita','coursel','pengaturan','events'));
+    }
+    public function showsejarah($id)
+    {
+        $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
+        $pengaturan = Pengaturan::find($id);
+        return view('pengaturan.show_sejarah', compact('pengaturan','events'));
     }
 
     public function jurusan(Jurusan $jurusan)
@@ -73,6 +93,7 @@ class DashboardController extends Controller
         $coursel = Carousel::orderby('id','ASC')->paginate(5);
         //events all but no same with in view
         $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
-        return view('event.show_event', compact('event', 'coursel', 'events'));
+        $pengaturan = Pengaturan::first();
+        return view('event.show_event', compact('event', 'coursel', 'events','pengaturan'));
     }
 }

@@ -25,9 +25,16 @@
   <link href="{{ asset('assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/aos/aos.css')}}" rel="stylesheet">
 
+  <!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
   <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css')}}">
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/styles.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/heade-konten.css')}}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Flexor - v2.2.0
@@ -35,6 +42,28 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <style>
+    .marquee-container {
+      width: 60%;
+      overflow: hidden;
+      background:#39312f;
+      border: 0px solid #ddd;
+    }
+
+    .marquee-text {
+      display: inline-block;
+      padding-left: 100%;
+      white-space: nowrap;
+      animation: marquee 10s linear infinite;
+      font-size: 20px;
+      color: rgb(255, 255, 255);;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-100%); }
+    }
+  </style>
 
 </head>
 
@@ -66,7 +95,7 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/main.js')}}"></script>
-
+  
 
   <script src="{{ asset('assets/js/common-pages.js')}}"></script>
 

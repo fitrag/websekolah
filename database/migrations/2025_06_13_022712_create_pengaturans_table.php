@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('alamat_sekolah', 100);
             $table->string('nm_kepsek', 100);
             $table->string('nip_kepsek', 100);
-            $table->text('logo');
+            $table->text('logo')->nullable();
+            $table->text('foto_kepsek')->nullable();
             $table->text('kop')->nullable();
             $table->text('header_content')->nullable();
             $table->text('embeded')->nullable();

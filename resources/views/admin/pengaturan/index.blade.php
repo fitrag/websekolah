@@ -153,6 +153,18 @@
                                             </div>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <img id="fotoKepsekPreview" src="{{ asset('images/kepsek/'.$pengaturan->foto_kepsek ?? '') }}" alt="Foto Kepala Sekolah" style="max-width: 200px; max-height: 200px;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="foto_kepsek">Foto Kepala Sekolah</label>
+                                    <input type="file" name="foto_kepsek" id="foto_kepsek" class="form-control-file">
+                                    @error('foto_kepsek')
+                                            <div class="mt-2 text-danger">
+                                                {{ $message }}
+                                            </div>
+                                    @enderror
+                                </div>
 
                                 <button type="submit" class="btn btn-primary">Simpan</button>
                             </form>
@@ -180,9 +192,21 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+        function previewFotoKepsek(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#fotoKepsekPreview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
 
         $('#logo').change(function() {
             previewLogoSekolah(this);
+        });
+        $('#foto_kepsek').change(function() {
+            previewFotoKepsek(this);
         });
     });
 </script>

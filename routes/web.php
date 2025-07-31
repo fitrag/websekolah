@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{DashboardController,AuthController,AdminController,CourselController,BeritaController, CategoryController, JurusanController, EventController, PengaturanController};
+use App\Http\Controllers\{DashboardController,AuthController,AdminController,CourselController,BeritaController, CategoryController, JurusanController, EventController, PengaturanController, EskulController, AlumniController};
 
 //front
 Route::get('/', [DashboardController::class,'index']);
@@ -50,6 +50,22 @@ Route::middleware('auth')->group(function(){
     // pengaturan
     Route::get('pengaturan', [PengaturanController::class, 'index'])->name('pengaturan.index');
     Route::put('pengaturan/update', [PengaturanController::class, 'update'])->name('pengaturan.update');
+
+    // eskul
+    Route::get('eskul', [EskulController::class, 'index'])->name('eskul.index');
+    Route::get('eskul/{id}/edit', [EskulController::class, 'edit'])->name('eskul.edit');
+    Route::get('eskul/tambah', [EskulController::class, 'create'])->name('eskul.tambah');
+    Route::post('eskul/store', [EskulController::class, 'store'])->name('eskul.store');
+    Route::put('eskul/{id}/edit', [EskulController::class, 'update'])->name('eskul.update');
+    Route::delete('eskul/{eskul:id}', [EskulController::class, 'destroy'])->name('eskul.destroy');
+
+    // alumni
+    Route::get('alumni', [AlumniController::class, 'index'])->name('alumni.index');
+    Route::get('alumni/tambah', [AlumniController::class, 'create'])->name('alumni.tambah');
+    Route::post('alumni/store', [AlumniController::class, 'store'])->name('alumni.store');
+    Route::get('alumni/{id}/edit', [AlumniController::class, 'edit'])->name('alumni.edit');
+    Route::put('alumni/{id}/edit', [AlumniController::class, 'update'])->name('alumni.update');
+    Route::delete('alumni/{alumni:id}', [AlumniController::class, 'destroy'])->name('alumni.destroy');
   
     // berita
     Route::resource('berita', BeritaController::class);

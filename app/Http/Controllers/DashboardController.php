@@ -101,7 +101,9 @@ class DashboardController extends Controller
         $coursel = Carousel::orderby('id','ASC')->paginate(5);
         $no = 0;
         $events = Ivent::where('status','publish')->orderby('id','DESC')->paginate(6);
-        return view('event', compact('no', 'coursel', 'events'));
+        $ber = Berita::where('status','publish')->orderby('id','DESC')->limit(3)->get();
+        $pengaturan = Pengaturan::first();
+        return view('event.index', compact('no', 'coursel', 'events', 'ber', 'pengaturan'));
     }
     public function show_event(Ivent $event)
     {

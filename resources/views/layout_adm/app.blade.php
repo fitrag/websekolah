@@ -317,6 +317,25 @@
                             </li>
       
                         </ul>
+
+                        <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Kesiswaan</div>
+                        <ul class="pcoded-item pcoded-left-item">
+                            <li class="{{ Request::is('admin/eskul') ? 'active' : '' }}">
+                                <a href="{{ url('admin/eskul') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Ekstrakurikuler</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class="{{ Request::is('admin/alumni') ? 'active' : '' }}">
+                                <a href="{{ url('admin/alumni') }}" class="waves-effect waves-dark">
+                                    <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Alumni</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+      
+                        </ul>
       
                         
                         <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Kurikulum &amp; Sarpras</div>

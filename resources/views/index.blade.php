@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-xl-4 col-lg-5" data-aos="fade-up">
             <div class="conten">
-              <img src="{{ $pengaturan->foto_kepsek ? asset('images/' . $pengaturan->foto_kepsek) : asset('images/avtr.jpg') }}" width="400" alt="Tumbnail">
+              <img src="{{ $pengaturan->foto_kepsek ? asset('images/kepsek/' . $pengaturan->foto_kepsek) : asset('images/avtr.jpg') }}" width="400" alt="Tumbnail">
                 <div class="card-nama nama-guru text-center "><h4><b>{{ $pengaturan->nm_kepsek}}</b></h4></div>
             </div>
           </div>

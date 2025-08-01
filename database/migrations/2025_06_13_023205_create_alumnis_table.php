@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('alumnis', function (Blueprint $table) {
             $table->id();
             $table->string('nama',100);
+            $table->string('foto',555);
             $table->string('angkatan',8);
             $table->string('pesan',255);
             $table->string('status_kerja',255);

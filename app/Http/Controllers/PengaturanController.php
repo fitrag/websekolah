@@ -28,7 +28,7 @@ class PengaturanController extends Controller
             'npsn' => 'required|string|max:20',
             'nm_kepsek' => 'required|string|max:255',
             'nip_kepsek' => 'required|string|max:20',
-            'logo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'kata_pengantar' => 'required|string',
             'sejarah' => 'required|string',
             'akreditasi' => 'required|string',
@@ -44,6 +44,16 @@ class PengaturanController extends Controller
             $request->file('logo')->move("images/berita", $fileName);
             $logo = $fileName;
         }
+        if($request->file('foto_kepsek') == '') {
+            $foto_kepsek = NULL;
+        } else {
+            $file = $request->file('foto_kepsek');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = 'kepsek-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $request->file('foto_kepsek')->move("images/kepsek", $fileName);
+            $foto_kepsek = $fileName;
+        }
 
         $pengaturan = Pengaturan::first() ?? new Pengaturan();
         $pengaturan->nama_aplikasi = $request->nama_aplikasi;
@@ -55,6 +65,7 @@ class PengaturanController extends Controller
         $pengaturan->nm_kepsek = $request->nm_kepsek;
         $pengaturan->nip_kepsek = $request->nip_kepsek;
         $pengaturan->logo = $logo;
+        $pengaturan->foto_kepsek = $foto_kepsek;
         $pengaturan->kata_pengantar = $request->kata_pengantar;
         $pengaturan->sejarah = $request->sejarah;
         $pengaturan->akreditasi = $request->akreditasi;

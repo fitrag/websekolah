@@ -6,7 +6,7 @@
 <main id="main">
 
     <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
+    <section id="why-us" class="sambutan">
       <div class="container">
         <div class="row">
           <div class="col-xl-4 col-lg-5" data-aos="fade-up">
@@ -55,7 +55,7 @@
     </section><!-- End Why Us Section -->
 
   <!-- ======= About Section ======= -->
-  <section id="about" class="about section-bg">
+  <section id="sejarah" class="about section-bg">
     <div class="container">
 
       <div class="row">
@@ -201,8 +201,148 @@
       </div>
     </div>
   </section><!-- End Testimonials Section -->
+  
+  <!-- portofolio -->
+  <section id="portfolio" class="portfolio">
+      <div class="container">
+        <br>
+        <div class="section-title">
+          <h2 data-aos="fade-up">Portofolio</h2>
+          <h5 data-aos="fade-up" style="color: black;">Foto seputar SMKN 1 Seputih Agung.</h5>
+        </div>
 
-   <!-- ======= Contact Section ======= -->
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-kurikulum">Kurikulum</li>
+              <li data-filter=".filter-kesiswaan">Kesiswaan</li>
+              <li data-filter=".filter-hki">Humas HKI</li>
+              <li data-filter=".filter-gebyar">Gebyar SMK</li>
+              <li data-filter=".filter-bkk">BKK</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+                @php
+                    $kur = App\Models\Berita::select('id','title','body','thumbnail','foto1')
+                        ->where([
+                                ['category_id','=','1'],
+                            ])
+                        ->orderby('id','DESC')
+                        ->paginate(10);
+                @endphp
+            @foreach($kur as $item)
+              
+              <div class="col-lg-4 col-md-6 portfolio-item filter-kurikulum">
+                  <img src="{{ asset('images/berita/'.$item->foto1) }}"  class="img-preview img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
+                  <div class="portfolio-info">
+                    <h4>{!! Str::limit($item->title , 20) !!}</h4>
+                    <p>{!! Str::limit($item->body, 30) !!}</p>
+                    <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                    <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                  </div>        
+                </div>
+            
+            @endforeach
+
+                @php
+                    $kesis = App\Models\Berita::select('id','title','body','thumbnail','foto1')
+                        ->where([
+                                ['category_id','=','2'],
+                            ])
+                        ->orderby('id','DESC')
+                        ->paginate(12);
+                @endphp
+
+            @foreach($kesis as $item)
+             
+              <div class="col-lg-4 col-md-6 portfolio-item filter-kesiswaan">
+                <img src="{{ asset('images/berita/'.$item->thumbnail) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
+                <div class="portfolio-info">
+                    <h4>{{ $item->title }}</h4>
+                    {!! Str::limit($item->body, 30 ) !!}
+                  <a href="{{ asset('images/berita/'.$item->thumbnail) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            @endforeach
+
+
+              @php
+                    $hki = App\Models\Berita::select('id','title','body','thumbnail','foto1')
+                        ->where([
+                                ['category_id','=','7'],
+                            ])
+                        ->orderby('id','DESC')
+                        ->paginate(12);
+                @endphp
+
+            @foreach($hki as $item)
+              <div class="col-lg-4 col-md-6 portfolio-item filter-hki">
+                <img src="{{ asset('images/berita/'.$item->foto1) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
+                <div class="portfolio-info">
+                    <h4>{{ $item->title }}</h4>
+                    <p>{!! Str::limit($item->body, 30) !!}</p>
+                  <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                  <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            @endforeach              
+            
+            @php
+                  $lks = App\Models\Berita::select('id','title','body','thumbnail','foto1')
+                      ->where([
+                              ['category_id','=','10'],
+                          ])
+                      ->orderby('id','DESC')
+                      ->paginate(12);
+              @endphp
+
+          @foreach($lks as $item)
+            <div class="col-lg-4 col-md-6 portfolio-item filter-gebyar">
+              <img src="{{ asset('images/berita/'.$item->foto1) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
+              <div class="portfolio-info">
+                  <h4>{{ $item->title }}</h4>
+                  <p>{!! Str::limit($item->body, 30) !!}</p>
+                <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+                <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          @endforeach              
+          
+          @php
+                $bkk = App\Models\Berita::select('id','title','body','thumbnail','foto1')
+                    ->where([
+                            ['category_id','=','8'],
+                        ])
+                    ->orderby('id','DESC')
+                    ->paginate(12);
+            @endphp
+
+        @foreach($bkk as $item)
+          <div class="col-lg-4 col-md-6 portfolio-item filter-bkk">
+            <img src="{{ asset('images/berita/'.$item->foto1) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
+            <div class="portfolio-info">
+                <h4>{{ $item->title }}</h4>
+                <p>{!! Str::limit($item->body, 30) !!}</p>
+              <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
+              <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            </div>
+          </div>
+        @endforeach              
+
+        </div>
+
+      </div>
+
+
+      
+    </section><!-- End Portfolio Section -->
+
+  <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
 

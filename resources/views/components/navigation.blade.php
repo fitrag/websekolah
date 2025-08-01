@@ -52,17 +52,17 @@
                   <li class="{{ Request::is('sejarah*') ? 'active' : '' }}">
                       <a href="{{ url('sejarah') }}#sejarah">Sejarah</a>
                   </li>
-                  <li class="{{ Request::is('visi-misi*') ? 'active' : '' }}">
-                      <a href="{{ url('visi-misi') }}">Visi dan Misi</a>
+                  <li class="{{ Request::is('sejarah*') ? 'active' : '' }}">
+                      <a href="{{ url('sejarah') }}">Visi dan Misi</a>
                   </li>
-                  <li class="{{ Request::is('portofolio*') ? 'active' : '' }}">
-                      <a href="{{ url('portofolio') }}">Portofolio</a>
+                  <li class="{{ Request::is('portfolio*') ? 'active' : '' }}">
+                      <a href="{{ url('portofolio') }}#portfolio">Portofolio</a>
                   </li>
-                  <li class="{{ Request::is('struktur-organisasi*') ? 'active' : '' }}">
-                      <a href="{{ url('struktur-organisasi') }}">Struktur Organisasi</a>
+                  <li class="{{ Request::is('struktur/organisasi*') ? 'active' : '' }}">
+                      <a href="{{ url('struktur/organisasi') }}">Struktur Organisasi</a>
                   </li>
-                  <li class="{{ Request::is('denah*') ? 'active' : '' }}">
-                      <a href="{{ url('denah') }}">Denah Sekolah</a>
+                  <li class="{{ Request::is('contact*') ? 'active' : '' }}">
+                      <a href="{{ url('contact') }}#contact">Denah Sekolah</a>
                   </li>
                   <li class="{{ Request::is('logo*') ? 'active' : '' }}">
                       <a href="{{ url('logo') }}">Logo</a>

@@ -7,6 +7,11 @@ use App\Http\Controllers\{DashboardController,AuthController,AdminController,Cou
 Route::get('/', [DashboardController::class,'index']);
 Route::get('beranda', [DashboardController::class,'index']);
 Route::get('sejarah', [DashboardController::class,'index']);
+Route::get('portofolio', [DashboardController::class,'index']);
+Route::get('contact', [DashboardController::class,'index']);
+Route::get('struktur/organisasi', [DashboardController::class,'struktur_organisasi'])->name('struktur-organisasi');
+Route::get('logo', [DashboardController::class,'logo'])->name('logo');
+
 Route::get('cari_berita',[DashboardController::class,'cari_berita']);
 Route::get('show/{id}', [DashboardController::class,'show']);
 Route::get('showsejarah/{id}', [DashboardController::class,'showsejarah']);

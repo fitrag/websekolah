@@ -41,6 +41,21 @@ class DashboardController extends Controller
         ));
     }
 
+    public function struktur_organisasi()
+    {
+        $pengaturan = pengaturan::first();
+        return view('organisasi.index_organisasi', compact('pengaturan'));
+    }
+
+    public function logo()
+    {
+        $headline = Berita::latest()->first(); // ambil 1 berita utama
+        $berita = Berita::where('id', '!=', $headline->id)->latest()->take(5)->get(); // berita lainnya
+        $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
+        $pengaturan = pengaturan::first();
+        return view('organisasi.index_logo', compact('pengaturan','events','berita'));
+    }
+
     public function cari_berita(Request $request)
     {
         $coursel = Carousel::orderby('id','ASC')->paginate(5);

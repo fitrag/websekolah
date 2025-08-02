@@ -118,9 +118,9 @@
               <li><a href="#">Teknik Komputer dan Jaringan</a></li>
             </ul>
           </li>
-          <li class="drop-down"><a href="">Informasi</a>
+          <li class="drop-down {{ Request::is('berita*')  ? 'active' : '' }}"><a href="">Informasi</a>
             <ul>
-              <li><a href="#values">Berita Sekolah</a></li>
+              <li><a href="{{ url('berita') }}#berita">Berita Sekolah</a></li>
               <li><a href="#">Pengumuman Sekolah</a></li>
               <li><a href="#">Agenda Sekolah</a></li>
               <li><a href="galeri_foto">Galeri Foto</a></li>

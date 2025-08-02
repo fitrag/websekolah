@@ -1,4 +1,13 @@
-
+<style>
+  .sent-message {
+    color: green;
+    background: #e6fbe6;
+    padding: 10px 15px;
+    border: 1px solid #b2d8b2;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+</style>
 @extends('layout.app')
 @section('title', 'Home')
 @section('content')
@@ -215,124 +224,38 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-kurikulum">Kurikulum</li>
-              <li data-filter=".filter-kesiswaan">Kesiswaan</li>
-              <li data-filter=".filter-hki">Humas HKI</li>
-              <li data-filter=".filter-gebyar">Gebyar SMK</li>
-              <li data-filter=".filter-bkk">BKK</li>
+              @foreach($kategori as $item)
+                <li data-filter=".filter-{{ Str::slug($item->name) }}">{{ $item->name }}</li>
+              @endforeach
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          @php use Illuminate\Support\Str; @endphp
 
-                @php
-                    $kur = App\Models\Berita::select('id','title','body','thumbnail','foto1')
-                        ->where([
-                                ['category_id','=','1'],
-                            ])
-                        ->orderby('id','DESC')
-                        ->paginate(10);
-                @endphp
-            @foreach($kur as $item)
-              
-              <div class="col-lg-4 col-md-6 portfolio-item filter-kurikulum">
-                  <img src="{{ asset('images/berita/'.$item->foto1) }}"  class="img-preview img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
-                  <div class="portfolio-info">
-                    <h4>{!! Str::limit($item->title , 20) !!}</h4>
-                    <p>{!! Str::limit($item->body, 30) !!}</p>
-                    <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                    <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>        
-                </div>
-            
-            @endforeach
-
-                @php
-                    $kesis = App\Models\Berita::select('id','title','body','thumbnail','foto1')
-                        ->where([
-                                ['category_id','=','2'],
-                            ])
-                        ->orderby('id','DESC')
-                        ->paginate(12);
-                @endphp
-
-            @foreach($kesis as $item)
-             
-              <div class="col-lg-4 col-md-6 portfolio-item filter-kesiswaan">
-                <img src="{{ asset('images/berita/'.$item->thumbnail) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
-                <div class="portfolio-info">
-                    <h4>{{ $item->title }}</h4>
-                    {!! Str::limit($item->body, 30 ) !!}
-                  <a href="{{ asset('images/berita/'.$item->thumbnail) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            @endforeach
-
-
-              @php
-                    $hki = App\Models\Berita::select('id','title','body','thumbnail','foto1')
-                        ->where([
-                                ['category_id','=','7'],
-                            ])
-                        ->orderby('id','DESC')
-                        ->paginate(12);
-                @endphp
-
-            @foreach($hki as $item)
-              <div class="col-lg-4 col-md-6 portfolio-item filter-hki">
-                <img src="{{ asset('images/berita/'.$item->foto1) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
-                <div class="portfolio-info">
-                    <h4>{{ $item->title }}</h4>
-                    <p>{!! Str::limit($item->body, 30) !!}</p>
-                  <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            @endforeach              
-            
-            @php
-                  $lks = App\Models\Berita::select('id','title','body','thumbnail','foto1')
-                      ->where([
-                              ['category_id','=','10'],
-                          ])
-                      ->orderby('id','DESC')
-                      ->paginate(12);
-              @endphp
-
-          @foreach($lks as $item)
-            <div class="col-lg-4 col-md-6 portfolio-item filter-gebyar">
-              <img src="{{ asset('images/berita/'.$item->foto1) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
+          @foreach($berita as $item)
+            <div class="col-lg-4 col-md-6 portfolio-item filter-{{ Str::slug($item->categori->name) }}">
+              <img src="{{ asset('images/berita/'.$item->foto1) }}" 
+                  class="img-preview img-fluid rounded mr-3" 
+                  alt="{{ $item->title }}" 
+                  style="height:300px; width:400px; object-fit: cover; object-position: center;">
+                  
               <div class="portfolio-info">
-                  <h4>{{ $item->title }}</h4>
-                  <p>{!! Str::limit($item->body, 30) !!}</p>
-                <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
+                <h4>{{ Str::limit($item->title, 20) }}</h4>
+                <p>{{ Str::limit(strip_tags($item->body), 30) }}</p>
+                <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery"  class="venobox preview-link" title="{{ $item->title }}">
+                  <i class="bx bx-image"></i>
+                </a>
+                <a href="#" 
+                  class="details-link" 
+                  title="More Details">
+                  <i class="bx bx-link"></i>
+                </a>
+              </div>        
             </div>
-          @endforeach              
+          @endforeach
           
-          @php
-                $bkk = App\Models\Berita::select('id','title','body','thumbnail','foto1')
-                    ->where([
-                            ['category_id','=','8'],
-                        ])
-                    ->orderby('id','DESC')
-                    ->paginate(12);
-            @endphp
-
-        @foreach($bkk as $item)
-          <div class="col-lg-4 col-md-6 portfolio-item filter-bkk">
-            <img src="{{ asset('images/berita/'.$item->foto1) }}" class="img-fluid rounded mr-3" alt="" style="height:300px; width:400px; object-fit: cover; object-position: center;">
-            <div class="portfolio-info">
-                <h4>{{ $item->title }}</h4>
-                <p>{!! Str::limit($item->body, 30) !!}</p>
-              <a href="{{ asset('images/berita/'.$item->foto1) }}" data-gall="portfolioGallery" class="venobox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="#" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-        @endforeach              
 
         </div>
 
@@ -386,39 +309,45 @@
             </iframe>
           </div>
         </div>
-
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="300">
-          <div class="col-xl-9 col-lg-12 mt-4">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-            <div class="form-row">
-              <div class="col-md-6 form-group">
-              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
-                data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-              <div class="validate"></div>
+        
+        @if(session('success'))
+          <div class="sent-message">
+            {{ session('success') }}
+          </div>
+        @endif
+        <div class="row justify-content-center " data-aos="fade-up" data-aos-delay="300">
+          <div class="col-xl-9 col-lg-12 mt-4 php-email-form">
+            <form action="{{ route('contact.store') }}" method="post"  class="">
+              @csrf
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                  data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                  data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validate"></div>
+                </div>
               </div>
-              <div class="col-md-6 form-group">
-              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
-                data-rule="email" data-msg="Please enter a valid email" />
-              <div class="validate"></div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
               </div>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
-              data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validate"></div>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required"
-              data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validate"></div>
-            </div>
-            <div class="mb-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required"
+                data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
+            
           </div>
         </div>
       </div>

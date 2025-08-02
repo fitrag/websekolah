@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{DashboardController,AuthController,AdminController,CourselController,BeritaController, CategoryController, JurusanController, EventController, PengaturanController, EskulController, AlumniController};
+use App\Http\Controllers\{DashboardController,AuthController,AdminController,CourselController,BeritaController, CategoryController, JurusanController, EventController, PengaturanController, EskulController, AlumniController, CommentController, ContactController};
 
 //front
 Route::get('/', [DashboardController::class,'index']);
@@ -9,16 +9,22 @@ Route::get('beranda', [DashboardController::class,'index']);
 Route::get('sejarah', [DashboardController::class,'index']);
 Route::get('portofolio', [DashboardController::class,'index']);
 Route::get('contact', [DashboardController::class,'index']);
+Route::get('berita', [DashboardController::class,'index']);
 Route::get('struktur/organisasi', [DashboardController::class,'struktur_organisasi'])->name('struktur-organisasi');
 Route::get('logo', [DashboardController::class,'logo'])->name('logo');
 
 Route::get('cari_berita',[DashboardController::class,'cari_berita']);
+Route::get('all_berita',[DashboardController::class,'all_berita']);
+
 Route::get('show/{id}', [DashboardController::class,'show']);
 Route::get('showsejarah/{id}', [DashboardController::class,'showsejarah']);
 Route::get('galeri_foto', [DashboardController::class,'galeri_foto']);
 Route::get('jurusan/{jurusan:slug}', [DashboardController::class,'jurusan'])->name('jurusan');
 Route::get('event', [DashboardController::class,'event'])->name('event.index');
 Route::get('event/{event:slug}', [DashboardController::class,'show_event'])->name('event.show');
+
+Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/komentar/{berita}', [CommentController::class, 'store'])->name('komentar.store');
 
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('proses_login', [AuthController::class, 'proses_login'])->name('proses_login');

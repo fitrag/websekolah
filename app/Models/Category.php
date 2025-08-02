@@ -11,4 +11,9 @@ class Category extends Model
     {
         return $this->hasMany(Carousel::class);
     }
+
+    public function berita()
+    {
+        return $this->hasMany(Berita::class, 'category_id');
+    }
 }

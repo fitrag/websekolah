@@ -20,10 +20,10 @@
 @section('title', 'Detail Berita')
 @section('content')
 
-    @php
-        $dataThumbnail = $berita->thumbnail;
-        $thumbnail = explode(',', $dataThumbnail);
-    @endphp
+@php
+    $dataThumbnail = $berita->thumbnail;
+    $thumbnail = explode(',', $dataThumbnail);
+@endphp
 
 <section id="deatilberita" class="contact">
     <div class="hero-berita" style="background-image: url('{{ asset('img/' . $pengaturan->tumbnail) }}'); height: 200px;"> 
@@ -81,6 +81,31 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
+                <br>
+                
+
+                <h5>Komentar</h5>
+                @foreach($berita->comments->where('parent_id', null) as $comment)
+                    @include('partials.comment', ['comment' => $comment])
+                @endforeach
+
+                <!-- Form Komentar -->
+                <h6>Tinggalkan Komentar</h6>
+                @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                <form action="{{ route('komentar.store', $berita->id) }}" method="POST">
+                @csrf
+                <div class="form-group mb-2">
+                    <input type="text" name="nama" class="form-control" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group mb-2">
+                    <textarea name="komentar" class="form-control" rows="3" placeholder="Tulis komentar..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Kirim Komentar</button>
+                </form>
                 </div>
             </div>
             @php

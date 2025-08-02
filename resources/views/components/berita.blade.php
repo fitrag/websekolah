@@ -16,8 +16,9 @@
                     <div class="image-wrapper">
                         <img src="{{ asset('images/berita/' . $thumbnail[0]) }}" class="img-fluid" alt="{{ $headline->title }}">
                         <span class="tanggal-overlay">
-                            {{ \Carbon\Carbon::parse($headline->created_at)->translatedFormat('l, d F Y') }}
-                            | Komentar
+                            <i class="bx bx-calendar"></i> {{ \Carbon\Carbon::parse($headline->created_at)->translatedFormat('l, d F Y') }}
+                            |&nbsp; {{ $headline->comments->count() }} <i class="bx bx-message"></i> |
+                             {{ $headline->views }}x dilihat 
                         </span>
                     </div>
                     <div class="meta-info mt-2 text-muted small">
@@ -43,8 +44,9 @@
                             <div class="card-body">
                                 <h6 class="card-title mt-2 text-left"><a href="{{ url('show/' . $item->id)}}" class="btn-outline-primar">{{ $item->title }}</a></h6>
                                 <small class="text-muted">
-                                    <i class="fa fa-calendar"></i>
-                                    {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y') }}
+                                    <i class="bx bx-calendar"></i>
+                                    {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y') }} |
+                                    &nbsp; {{ $item->comments->count() }} <i class="bx bx-message"></i> | {{ $item->views }}x dilihat
                                 </small>
                                 <p class="card-text" style="text-align: justify;">{{ Str::limit(strip_tags($item->body), 100) }}</p>
                                 <a href="{{ url('show/' . $item->id)}}" class="btn btn-outline-primary btn-sm">READ POST</a>
@@ -56,7 +58,7 @@
                 <hr>
         
                     <div class="wrapper-berita-lainnya">
-                        <a href="#" class="btn-berita">
+                        <a href="{{ url('all_berita')}}" class="btn-berita">
                             <i class="bi bi-folder-fill"></i> BERITA LAINNYA
                         </a>
                     </div>

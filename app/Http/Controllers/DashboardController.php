@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Alumni, Berita,Carousel, Ivent, Jurusan, Mou, Pengaturan};
+use App\Models\{Alumni, Berita,Carousel, Category, Ivent, Jurusan, Mou, Pengaturan};
 use Illuminate\Support\Str;
 
 class DashboardController extends Controller
@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         $headline = Berita::latest()->first(); // ambil 1 berita utama
         $berita = Berita::where('id', '!=', $headline->id)->latest()->take(6)->get(); // berita lainnya
-
+        
         $coursel = Carousel::orderby('id','ASC')
                 ->where('status','publish')
                 ->paginate(5);
@@ -26,6 +26,8 @@ class DashboardController extends Controller
         $pengaturan = Pengaturan::first();
         $mou = Mou::all();
         $alumni = Alumni::orderBy('nama')->limit(10)->get();
+        $kategori = Category::orderBy('name')->get();
+        $komentar = Berita::with('comments')->get(); // gunakan eager loading
         return view('index',compact(
             'no', 
             'data_berita', 
@@ -37,7 +39,9 @@ class DashboardController extends Controller
             'headline', 
             'berita',
             'mou',
-            'alumni'
+            'alumni',
+            'kategori',
+            'komentar'
         ));
     }
 
@@ -70,12 +74,22 @@ class DashboardController extends Controller
             'coursel'
         ));
     }
+    public function all_berita(Request $request)
+    {
+        $pengaturan = Pengaturan::first();
+        $headline = Berita::latest()->first(); // ambil 1 berita utama
+        $berita = Berita::where('id', '!=', $headline->id)->latest()->take(5)->get(); // berita lainnya
+        $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
+        $kategoriList = Category::with('Berita')->get(); // relasi: berita()
+        return view('berita.all_berita', compact('pengaturan','headline','berita','kategoriList','events'));
+    }
     
     public function show($id)
     {
         $pengaturan = Pengaturan::first();
         $coursel = Carousel::orderby('id','ASC')->paginate(5);
-        $berita = Berita::find($id);
+        $berita = Berita::findOrFail($id);
+        $berita->increment('views');
         $events = Ivent::where('status','publish')->orderby('id','DESC')->limit(3)->get();
         return view('berita.show_berita', compact('berita','coursel','pengaturan','events'));
     }
